@@ -88,7 +88,6 @@ function updateLanguage() {
   const t = translations[currentLanguage];
 
   document.querySelector(".hero h1").textContent = t.heroTitle;
-  document.querySelector(".hero p").textContent = t.heroText;
 
   searchInput.placeholder = t.search;
 
