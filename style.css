@@ -181,8 +181,12 @@ body.light .card {
 .card img {
   width: 100%;
   height: 260px;
-  object-fit: cover;
+  object-fit: contain; /* Faz a imagem caber toda sem cortar */
+  object-position: center; /* Centra a imagem no meio do espaço */
+  background-color: white; /* Preenche os espaços vazios com branco */
   display: block;
+  cursor: pointer;
+  padding: 10px; /* Dá um respiro à volta do ténis */
 }
 
 .card-content {
@@ -521,16 +525,59 @@ admin-list {
 
 @media(max-width: 768px) {
   .navbar {
-    padding: 20px;
+    padding: 15px;
     flex-direction: column;
-    gap: 20px;
-  }
-
-  .hero h1 {
-    font-size: 2rem;
+    gap: 15px;
   }
 
   .grid {
-    padding: 20px;
+    padding: 15px;
+    grid-template-columns: repeat(2, 1fr); /* Coloca 2 cartões lado a lado no telemóvel */
+    gap: 10px; /* Reduz o espaço entre os cartões */
+  }
+
+  .card img {
+    height: 140px; /* Imagem mais pequena no mobile */
+    padding: 5px;
+  }
+
+  .card-content {
+    padding: 12px; /* Menos espaço dentro do cartão */
+  }
+
+  .card h3 {
+    font-size: 0.85rem; /* Letra do título mais pequena */
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+
+  .info, .sizes-title {
+    font-size: 0.75rem;
+    margin-bottom: 8px;
+  }
+
+  .size-badge {
+    padding: 6px 10px;
+    font-size: 0.75rem;
+  }
+
+  .price {
+    font-size: 1.1rem; /* Preço mais pequeno */
+  }
+
+  .old-price {
+    font-size: 0.8rem;
+  }
+
+  /* Ajustes do Admin Panel no Mobile */
+  .admin-panel {
+    margin: 30px 20px; /* Dá margens laterais para não colar aos cantos do ecrã */
+  }
+
+  .admin-panel input,
+  .admin-panel select,
+  .admin-panel button {
+    padding: 12px; /* Diminui a altura das caixas de texto */
+    font-size: 0.9rem;
   }
 }
