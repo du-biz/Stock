@@ -150,9 +150,9 @@ function renderProducts() {
 
         <div class="price-wrapper">
 
-          <span class="old-price">
-            ${item.oldPrice.toFixed(2).replace(".", ",")}€
-          </span>
+         <span class="old-price">
+          ${item.old_price ? parseFloat(item.old_price).toFixed(2).replace(".", ",") + "€" : ""}
+         </span>
 
           <span class="price">
             ${item.price.toFixed(2).replace(".", ",")}€
