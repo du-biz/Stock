@@ -425,6 +425,22 @@ body.light .controls select option {
   color: white;
 }
 
+/* --- SETINHA DO ADMIN PANEL (MODO ESCURO) --- */
+.admin-panel select {
+  appearance: none;
+  cursor: pointer;
+  padding-right: 50px;
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="%237cff6b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpolyline points="6 9 12 15 18 9"%3E%3C/polyline%3E%3C/svg%3E');
+  background-repeat: no-repeat;
+  background-position: right 28px center; 
+  background-size: 14px;
+}
+
+/* --- SETINHA DO ADMIN PANEL (MODO CLARO) --- */
+body.light .admin-panel select {
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="%232e7d32" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpolyline points="6 9 12 15 18 9"%3E%3C/polyline%3E%3C/svg%3E');
+}
+
 /* --- BOTÕES DO ADMIN EM MODO ESCURO (PADRÃO NÉON) --- */
 .admin-panel button {
   background: #7cff6b; 
