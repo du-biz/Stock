@@ -539,8 +539,13 @@ body.light .controls select option {
     gap: 15px;
   }
 
+  .controls {
+    padding: 10px 15px 5px 15px; /* Topo, Direita, Fundo (reduzido), Esquerda */
+    gap: 10px; /* Reduz também o espaço entre a caixa de pesquisa e o botão de ordenar */
+  }
+
   .grid {
-    padding: 15px;
+    padding: 5px 15px 20px 15px; /* Topo (reduzido), Direita, Fundo, Esquerda */
     display: grid;
     grid-template-columns: 1fr;
     gap: 20px;
