@@ -86,10 +86,7 @@ const searchInput = document.getElementById("searchInput");
 const sortSelect = document.getElementById("sortSelect");
 
 function updateLanguage() {
-
   const t = translations[currentLanguage];
-
-  document.querySelector(".hero h1").textContent = t.heroTitle;
 
   searchInput.placeholder = t.search;
 
@@ -101,6 +98,12 @@ function updateLanguage() {
 
   document.querySelectorAll(".tab")[0].textContent = t.sneakers;
   document.querySelectorAll(".tab")[1].textContent = t.clothing;
+
+  // Atualiza o texto do rodapé
+  const shippingElement = document.getElementById("shippingText");
+  if (shippingElement) {
+    shippingElement.textContent = t.shipping;
+  }
 
   renderProducts();
 }
