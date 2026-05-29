@@ -168,7 +168,6 @@ body.light .stat-box h2 {
   box-shadow: 0 10px 30px rgba(0,0,0,0.3);
   display: flex; 
   flex-direction: column; 
-  height: 100%; 
   margin: 0;
   width: 100%;
 }
@@ -198,7 +197,7 @@ body.light .card {
   padding: 26px;
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
+  flex: 1;
   text-align: left;
 }
 
@@ -222,7 +221,7 @@ body.light .card {
 
 .sizes-title {
   margin-bottom: 12px;
-  color: #7cff6b;
+  color: #7cff6b !important;
   font-size: 0.9rem;
   font-weight: 600;
   text-align: left;
@@ -553,6 +552,11 @@ body.light .controls select option {
   .card-content {
     padding: 12px;
     text-align: left; /* Garante que fica à esquerda também no telemóvel */
+  }
+
+  .card:hover {
+    transform: none !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important;
   }
 
   .card h3 {
