@@ -235,3 +235,21 @@ themeToggle.addEventListener("click", () => {
 
 updateLanguage();
 renderProducts();
+
+const imageModal = document.getElementById("imageModal");
+const modalImg = document.getElementById("modalImg");
+
+function openModal(imageSrc) {
+  modalImg.src = imageSrc;
+  imageModal.style.display = "flex";
+}
+
+function closeModal() {
+  imageModal.style.display = "none";
+}
+
+imageModal.addEventListener("click", (e) => {
+  if (e.target === imageModal) {
+    closeModal();
+  }
+});
