@@ -77,29 +77,26 @@ async function loadProducts() {
 loadProducts();
 
 let currentLanguage = "pt";
-
 let currentCategory = "sneakers";
+let currentSort = "default"; // NOVA VARIÁVEL DE ESTADO
 
 const grid = document.getElementById("productGrid");
 const tabs = document.querySelectorAll(".tab");
 const searchInput = document.getElementById("searchInput");
-const sortSelect = document.getElementById("sortSelect");
+const sortBtns = document.querySelectorAll(".sort-btn"); // NOVA REFERÊNCIA
 
 function updateLanguage() {
   const t = translations[currentLanguage];
 
   searchInput.placeholder = t.search;
 
-  sortSelect.innerHTML = `
-    <option value="default">${t.sort}</option>
-    <option value="low-high">${t.lowHigh}</option>
-    <option value="high-low">${t.highLow}</option>
-  `;
+  document.getElementById("btnSortDefault").textContent = t.sortDefault;
+  document.getElementById("btnSortLowHigh").textContent = t.sortLowHigh;
+  document.getElementById("btnSortHighLow").textContent = t.sortHighLow;
 
   document.querySelectorAll(".tab")[0].textContent = t.sneakers;
   document.querySelectorAll(".tab")[1].textContent = t.clothing;
 
-  // Atualiza o texto do rodapé
   const shippingElement = document.getElementById("shippingText");
   if (shippingElement) {
     shippingElement.textContent = t.shipping;
@@ -109,72 +106,65 @@ function updateLanguage() {
 }
 
 function renderProducts() {
-
   const t = translations[currentLanguage];
-
   let items = [...products[currentCategory]];
-
   const search = searchInput.value.toLowerCase();
 
   items = items.filter(item =>
     item.name.toLowerCase().includes(search)
   );
 
-  if (sortSelect.value === "low-high") {
+  // NOVA LÓGICA DE ORDENAÇÃO
+  if (currentSort === "low-high") {
     items.sort((a, b) => a.price - b.price);
   }
-
-  if (sortSelect.value === "high-low") {
+  if (currentSort === "high-low") {
     items.sort((a, b) => b.price - a.price);
   }
 
   grid.innerHTML = items.map(item => `
-
     <div class="card">
-
       <img src="${item.image}" alt="${item.name}" onclick="openModal('${item.image}')">
-
       <div class="card-content">
-
         <h3>${item.name}</h3>
-
         <p class="info">${t.sku}: ${item.sku}</p>
-
         <div class="sizes-wrapper">
           <p class="sizes-title">${t.sizes}:</p>
-
           <div class="sizes">
-            ${item.sizes.map(size => `
-              <span class="size-badge">${size}</span>
-            `).join("")}
+            ${item.sizes.map(size => `<span class="size-badge">${size}</span>`).join("")}
           </div>
         </div>
-
         <div class="price-wrapper">
-
          <span class="old-price">
           ${item.old_price ? parseFloat(item.old_price).toFixed(2).replace(".", ",") + "€" : ""}
          </span>
-
           <span class="price">
             ${item.price.toFixed(2).replace(".", ",")}€
           </span>
-
         </div>
-
       </div>
-
     </div>
-
   `).join("");
-
 }
 
 renderProducts();
 
 searchInput.addEventListener("input", renderProducts);
 
-sortSelect.addEventListener("change", renderProducts);
+// NOVO EVENTO DE CLIQUE NOS BOTÕES DE ORDENAÇÃO
+sortBtns.forEach(btn => {
+  btn.addEventListener("click", () => {
+    // Remove a classe active de todos
+    sortBtns.forEach(b => b.classList.remove("active-sort"));
+    // Adiciona ao botão clicado
+    btn.classList.add("active-sort");
+    // Atualiza a variável de estado
+    currentSort = btn.dataset.sort;
+    renderProducts();
+  });
+});
+
+searchInput.addEventListener("input", renderProducts);
 
 tabs.forEach(tab => {
 
