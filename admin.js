@@ -58,6 +58,6 @@ logoutBtn.addEventListener("click", async () => {
 
   await supabaseClient.auth.signOut();
 
-  window.location.href = "/archive-site/login.html";
+  window.location.href = "/stock/login.html";
 
 });
