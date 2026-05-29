@@ -166,9 +166,11 @@ body.light .stat-box h2 {
   transition: 0.35s ease;
   border: 1px solid #2a2a2a;
   box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  display: flex;
+  display: flex; 
   flex-direction: column; 
-  height: 100%;
+  height: 100%; 
+  margin: 0;
+  width: 100%;
 }
 
 .card:hover {
@@ -227,7 +229,7 @@ body.light .card {
 }
 
 body.light .sizes-title {
-  color: #2e7d32;
+  color: #2e7d32 !important;
 }
 
 .sizes {
@@ -442,7 +444,7 @@ body.light .controls select option {
   background: #ff3333;
 }
 
-admin-list {
+.admin-list {
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -527,10 +529,6 @@ admin-list {
   color: #7cff6b;
 }
 
-.card img {
-  cursor: pointer;
-}
-
 @media(max-width: 768px) {
   .navbar {
     padding: 15px;
@@ -540,9 +538,11 @@ admin-list {
 
   .grid {
     padding: 15px;
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
-    align-items: stretch; /* CORREÇÃO: Garante que os cartões não ficam um mais alto que o outro */
+    align-items: stretch; 
+    align-content: start;
   }
 
   .card img {
@@ -571,7 +571,7 @@ admin-list {
     font-size: 0.75rem;
     margin-bottom: 8px;
     text-align: left;
-    color: #7cff6b; /* Força o verde no telemóvel */
+    color: #7cff6b !important;
   }
 
   .size-badge {
@@ -597,5 +597,13 @@ admin-list {
   .admin-panel button {
     padding: 16px; /* Aumenta a altura das caixas de volta ao normal */
     font-size: 16px !important; /* CORREÇÃO: O tamanho 16px desativa automaticamente o zoom irritante no iOS/Android */
+  }
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  .grid {
+    padding: 30px;
+    grid-template-columns: repeat(2, minmax(280px, 1fr)); /* Força 2 colunas */
+    gap: 20px;
   }
 }
