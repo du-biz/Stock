@@ -118,7 +118,7 @@ body.light .tab.active {
 
 body.light .controls input,
 body.light .controls select {
-  background-color: white; /* Usa background-color para não apagar a setinha */
+  background-color: white;
   color: black;
   border: 1px solid #ddd;
 }
@@ -331,12 +331,6 @@ body.light .lang-btn:hover:not(.active-lang) {
   border-radius: 12px;
   cursor: pointer;
   transition: background 0.2s ease;
-  /* Estas 4 linhas centram o ícone perfeitamente: */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.2rem;
-  padding: 0;
 }
 
 #themeToggle:hover {
@@ -426,16 +420,17 @@ body.light .controls select option {
   color: white;
 }
 
+/* --- BOTÕES DO ADMIN EM MODO ESCURO (PADRÃO NÉON) --- */
 .admin-panel button {
-  background: #2e7d32; /* O verde elegante (igual ao do preço em modo claro) */
-  color: white; /* Texto a branco fica mais legível com este verde */
+  background: #7cff6b; 
+  color: black; 
   font-weight: 700;
   cursor: pointer;
   transition: background 0.2s ease, transform 0.1s ease;
 }
 
 .admin-panel button:hover {
-  background: #1b5e20; /* Fica ligeiramente mais escuro quando passas o rato */
+  background: #6be65b; 
 }
 
 .admin-panel button:active {
@@ -443,12 +438,12 @@ body.light .controls select option {
 }
 
 #logoutBtn {
-  background: #d32f2f; /* Um vermelho mais suave/mate */
+  background: #ff4d4d; 
   color: white;
 }
 
 #logoutBtn:hover {
-  background: #b71c1c;
+  background: #ff3333;
 }
 
 .admin-list {
@@ -494,7 +489,7 @@ body.light .controls select option {
 }
 
 .btn-delete {
-  background: #d32f2f !important; /* Mesmo vermelho suave */
+  background: #ff4d4d !important; 
   color: white !important;
   padding: 10px !important;
 }
@@ -540,7 +535,7 @@ body.light .controls select option {
   text-align: center;
   padding: 30px 20px;
   margin-top: 40px;
-  border-top: 1px solid #7cff6b; /* Agora está com 1px, mais fina e elegante */
+  border-top: 1px solid #7cff6b;
   color: #8e8e8e;
   font-size: 0.75rem; 
   line-height: 1.8;
@@ -548,7 +543,7 @@ body.light .controls select option {
 }
 
 body.light .site-footer {
-  border-top: 2px solid #2e7d32; /* Linha verde escura para o modo claro */
+  border-top: 2px solid #2e7d32;
   color: #666;
   background-color: #f2f2f2;
 }
@@ -575,6 +570,30 @@ body.light .admin-item-info span {
   color: #666;
 }
 
+/* --- ALTERAÇÃO DINÂMICA: BOTÕES DO ADMIN EM MODO CLARO (SUBTIL) --- */
+body.light .admin-panel button {
+  background: #2e7d32;
+  color: white;
+}
+
+body.light .admin-panel button:hover {
+  background: #1b5e20;
+}
+
+body.light #logoutBtn {
+  background: #d32f2f;
+  color: white;
+}
+
+body.light #logoutBtn:hover {
+  background: #b71c1c;
+}
+
+body.light .btn-delete {
+  background: #d32f2f !important;
+  color: white !important;
+}
+
 @media(max-width: 768px) {
   .navbar {
     padding: 15px;
@@ -583,12 +602,12 @@ body.light .admin-item-info span {
   }
 
   .controls {
-    padding: 10px 15px 5px 15px; /* Topo, Direita, Fundo (reduzido), Esquerda */
-    gap: 10px; /* Reduz também o espaço entre a caixa de pesquisa e o botão de ordenar */
+    padding: 10px 15px 5px 15px; 
+    gap: 10px; 
   }
 
   .grid {
-    padding: 5px 15px 20px 15px; /* Topo (reduzido), Direita, Fundo, Esquerda */
+    padding: 5px 15px 20px 15px; 
     display: grid;
     grid-template-columns: 1fr;
     gap: 20px;
@@ -604,7 +623,7 @@ body.light .admin-item-info span {
 
   .card-content {
     padding: 12px;
-    text-align: left; /* Garante que fica à esquerda também no telemóvel */
+    text-align: left; 
   }
 
   .card:hover {
@@ -652,15 +671,15 @@ body.light .admin-item-info span {
   .admin-panel input,
   .admin-panel select,
   .admin-panel button {
-    padding: 16px; /* Aumenta a altura das caixas de volta ao normal */
-    font-size: 16px !important; /* CORREÇÃO: O tamanho 16px desativa automaticamente o zoom irritante no iOS/Android */
+    padding: 16px; 
+    font-size: 16px !important; 
   }
 }
 
 @media (max-width: 1024px) and (min-width: 769px) {
   .grid {
     padding: 30px;
-    grid-template-columns: repeat(2, minmax(280px, 1fr)); /* Força 2 colunas */
+    grid-template-columns: repeat(2, minmax(280px, 1fr));
     gap: 20px;
   }
 }
