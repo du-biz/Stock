@@ -128,7 +128,7 @@ function renderProducts() {
 
     <div class="card">
 
-      <img src="${item.image}" alt="${item.name}">
+      <img src="${item.image}" alt="${item.name}" onclick="openModal('${item.image}')">
 
       <div class="card-content">
 
