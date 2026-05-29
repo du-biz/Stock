@@ -12,6 +12,7 @@ const translations = {
     clothing: "Roupa",
     sku: "SKU",
     sizes: "Tamanhos",
+    envio: "Preços de envio não estão incluídos",
   },
 
   en: {
@@ -26,6 +27,7 @@ const translations = {
     clothing: "Clothing",
     sku: "SKU",
     sizes: "Sizes",
+    shipping: "Shipping prices are not included",
   }
 
 };
@@ -85,7 +87,9 @@ const sortSelect = document.getElementById("sortSelect");
 
 function updateLanguage() {
 
-  const t = translations[currentLanguage]
+  const t = translations[currentLanguage];
+
+  document.querySelector(".hero h1").textContent = t.heroTitle;
 
   searchInput.placeholder = t.search;
 
