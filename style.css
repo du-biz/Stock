@@ -430,6 +430,54 @@ body.light .controls select option {
   background: #ff3333;
 }
 
+admin-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.admin-item {
+  background: #181818;
+  padding: 16px;
+  border-radius: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #242424;
+}
+
+.admin-item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.admin-item-info strong {
+  font-size: 1.05rem;
+}
+
+.admin-item-info span {
+  color: #8e8e8e;
+  font-size: 0.85rem;
+}
+
+.admin-item-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-edit {
+  background: #ffc107 !important; /* Amarelo */
+  color: black !important;
+  padding: 10px !important;
+}
+
+.btn-delete {
+  background: #ff4d4d !important; /* Vermelho */
+  color: white !important;
+  padding: 10px !important;
+}
+
 @media(max-width: 768px) {
   .navbar {
     padding: 20px;
