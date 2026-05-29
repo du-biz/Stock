@@ -137,3 +137,18 @@ logoutBtn.addEventListener("click", async () => {
 });
 
 loadAdminProducts();
+
+// Lógica do botão de alternar tema no Admin
+const themeToggle = document.getElementById("themeToggle");
+
+if (themeToggle) {
+  themeToggle.addEventListener("click", () => {
+    if(document.body.classList.contains("light")) {
+      document.body.classList.remove("light"); // Fica escuro
+      themeToggle.innerHTML = "☀️"; // Muda o ícone
+    } else {
+      document.body.classList.add("light"); // Fica claro
+      themeToggle.innerHTML = "🌙"; // Muda o ícone
+    }
+  });
+}
