@@ -8,7 +8,7 @@ async function checkAuth() {
 
   if(!session) {
 
-    window.location.href = "/stock/login.html";
+    window.location.href = "login.html";
 
   }
 
