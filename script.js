@@ -12,7 +12,7 @@ const translations = {
     clothing: "Roupa",
     sku: "SKU",
     sizes: "Tamanhos",
-    envio: "Preços de envio não estão incluídos",
+    shipping: "Preços de envio não estão incluídos",
   },
 
   en: {
