@@ -619,16 +619,16 @@ body.light .btn-delete {
   .navbar {
     padding: 15px;
     flex-direction: column;
-    gap: 15px;
+    gap: 25px;
   }
 
-  .controls {
-    padding: 10px 15px 5px 15px; 
+.controls {
+    padding: 10px 15px 10px 15px; /* Aumentámos ligeiramente o espaço de fundo (3º valor) */
     gap: 10px; 
   }
 
   .grid {
-    padding: 5px 15px 20px 15px; 
+    padding: 15px 15px 20px 15px; /* Aumentámos o espaço no topo (1º valor) de 5px para 15px */
     display: grid;
     grid-template-columns: 1fr;
     gap: 20px;
