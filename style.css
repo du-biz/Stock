@@ -331,6 +331,12 @@ body.light .lang-btn:hover:not(.active-lang) {
   border-radius: 12px;
   cursor: pointer;
   transition: background 0.2s ease;
+  /* Estas 4 linhas centram o ícone perfeitamente: */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  padding: 0;
 }
 
 #themeToggle:hover {
@@ -421,29 +427,28 @@ body.light .controls select option {
 }
 
 .admin-panel button {
-  background: #7cff6b;
-  color: black;
+  background: #2e7d32; /* O verde elegante (igual ao do preço em modo claro) */
+  color: white; /* Texto a branco fica mais legível com este verde */
   font-weight: 700;
   cursor: pointer;
   transition: background 0.2s ease, transform 0.1s ease;
 }
 
 .admin-panel button:hover {
-  background: #6ceb5d; 
+  background: #1b5e20; /* Fica ligeiramente mais escuro quando passas o rato */
 }
 
 .admin-panel button:active {
   transform: scale(0.98); 
 }
 
-
 #logoutBtn {
-  background: #ff4d4d;
+  background: #d32f2f; /* Um vermelho mais suave/mate */
   color: white;
 }
 
 #logoutBtn:hover {
-  background: #ff3333;
+  background: #b71c1c;
 }
 
 .admin-list {
@@ -489,7 +494,7 @@ body.light .controls select option {
 }
 
 .btn-delete {
-  background: #ff4d4d !important;
+  background: #d32f2f !important; /* Mesmo vermelho suave */
   color: white !important;
   padding: 10px !important;
 }
