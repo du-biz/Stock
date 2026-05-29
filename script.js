@@ -220,21 +220,13 @@ enBtn.addEventListener("click", () => {
 const themeToggle = document.getElementById("themeToggle");
 
 themeToggle.addEventListener("click", () => {
-
   if(document.body.classList.contains("light")) {
-
-    document.body.classList.remove("light");
-
-    themeToggle.innerHTML = "🌙";
-
+    document.body.classList.remove("light"); // Fica escuro
+    themeToggle.innerHTML = "☀️"; // Ícone para voltar ao claro
   } else {
-
-    document.body.classList.add("light");
-
-    themeToggle.innerHTML = "☀️";
-
+    document.body.classList.add("light"); // Fica claro
+    themeToggle.innerHTML = "🌙"; // Ícone para voltar ao escuro
   }
-
 });
 
 updateLanguage();
