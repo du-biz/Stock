@@ -1,8 +1,7 @@
 const translations = {
 
   pt: {
-    heroTitle: "Rare Sneakers & Streetwear",
-    heroText: "O teu inventário pessoal.",
+    heroTitle: "Sneaker and Clothing Inventory",
     search: "Pesquisar produto...",
     sort: "Ordenar",
     lowHigh: "Preço: Menor → Maior",
@@ -16,8 +15,7 @@ const translations = {
   },
 
   en: {
-    heroTitle: "Rare Sneakers & Streetwear",
-    heroText: "Your personal inventory archive.",
+    heroTitle: "Sneaker and Clothing Inventory",
     search: "Search product...",
     sort: "Sort",
     lowHigh: "Price: Low → High",
