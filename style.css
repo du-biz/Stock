@@ -106,26 +106,75 @@ body.light .tab.active {
   flex-wrap: wrap;
 }
 
-.controls input,
-.controls select {
+.controls input {
   padding: 14px 20px;
   border-radius: 14px;
-  border: none;
+  border: 1px solid #242424;
   background: #1b1b1b;
   color: white;
   min-width: 260px;
+  font-size: 0.92rem;
+  font-weight: 500;
+  outline: none;
+  transition: border 0.2s ease;
 }
 
-body.light .controls input,
-body.light .controls select {
+.controls input:focus {
+  border-color: #7cff6b;
+}
+
+body.light .controls input {
   background-color: white;
   color: black;
   border: 1px solid #ddd;
 }
 
-/* Setinha verde escura específica para o modo claro */
-body.light .controls select {
-  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="%232e7d32" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpolyline points="6 9 12 15 18 9"%3E%3C/polyline%3E%3C/svg%3E');
+/* --- ESTILOS DOS NOVOS BOTÕES DE ORDENAR --- */
+.sort-buttons {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.sort-btn {
+  padding: 12px 18px;
+  border-radius: 12px;
+  border: 1px solid #242424;
+  background: #181818;
+  color: #8e8e8e;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sort-btn:hover {
+  background: #2a2a2a;
+  color: white;
+}
+
+.sort-btn.active-sort {
+  background: #7cff6b;
+  color: black;
+  border-color: #7cff6b;
+}
+
+/* MODO CLARO PARA OS BOTÕES DE ORDENAR */
+body.light .sort-btn {
+  background: white;
+  color: #666;
+  border: 1px solid #ddd;
+}
+
+body.light .sort-btn:hover {
+  background: #f5f5f5;
+  color: black;
+}
+
+body.light .sort-btn.active-sort {
+  background: #2e7d32;
+  color: white;
+  border-color: #2e7d32;
 }
 
 .stats {
@@ -335,7 +384,7 @@ body.light .lang-btn:hover:not(.active-lang) {
   justify-content: center;
   align-items: center;
   padding: 0;
-  line-height: 1; /* Impede que o emoji descambe para o fundo da caixa */
+  line-height: 1; 
 }
 
 #themeToggle:hover {
@@ -343,12 +392,12 @@ body.light .lang-btn:hover:not(.active-lang) {
 }
 
 body.light #themeToggle {
-  background: #ececec; /* Fica cinzento claro */
+  background: #ececec; 
   color: black;
 }
 
 body.light #themeToggle:hover {
-  background: #d4d4d4; /* Fica um cinzento um bocadinho mais escuro ao passar o rato */
+  background: #d4d4d4; 
 }
 
 #langToggle {
@@ -366,45 +415,6 @@ body.light #themeToggle:hover {
 
 #langToggle:hover {
   background: #6be65b;
-}
-
-.controls input,
-.controls select {
-  padding: 14px 18px;
-  border-radius: 16px;
-  border: 1px solid #242424;
-  background: #181818;
-  color: white;
-  min-width: 260px;
-  font-size: 0.92rem;
-  font-weight: 500;
-  outline: none;
-  transition: border 0.2s ease;
-}
-
-.controls input:focus,
-.controls select:focus {
-  border-color: #7cff6b;
-}
-
-.controls select {
-  appearance: none;
-  cursor: pointer;
-  padding-right: 50px;
-  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="%237cff6b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpolyline points="6 9 12 15 18 9"%3E%3C/polyline%3E%3C/svg%3E');
-  background-repeat: no-repeat;
-  background-position: right 18px center;
-  background-size: 14px;
-}
-
-.controls select option {
-  background: #181818;
-  color: white;
-}
-
-body.light .controls select option {
-  background: white;
-  color: black;
 }
 
 .admin-panel {
@@ -432,7 +442,7 @@ body.light .controls select option {
   padding-right: 50px;
   background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="%237cff6b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpolyline points="6 9 12 15 18 9"%3E%3C/polyline%3E%3C/svg%3E');
   background-repeat: no-repeat;
-  background-position: right 20px center; 
+  background-position: right 28px center; 
   background-size: 14px;
 }
 
@@ -622,13 +632,28 @@ body.light .btn-delete {
     gap: 25px;
   }
 
-.controls {
-    padding: 10px 15px 10px 15px; /* Aumentámos ligeiramente o espaço de fundo (3º valor) */
+  .controls {
+    padding: 10px 15px 10px 15px; 
     gap: 10px; 
   }
 
+  /* Ajuste no mobile para os botões de ordenar */
+  .sort-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .sort-btn {
+    flex: 1; 
+    padding: 12px 5px;
+    font-size: 0.75rem;
+    text-align: center;
+  }
+
   .grid {
-    padding: 15px 15px 20px 15px; /* Aumentámos o espaço no topo (1º valor) de 5px para 15px */
+    padding: 15px 15px 20px 15px; 
     display: grid;
     grid-template-columns: 1fr;
     gap: 20px;
@@ -658,7 +683,7 @@ body.light .btn-delete {
     line-height: 1.4;
   }
 
-.info {
+  .info {
     font-size: 0.75rem;
     margin-bottom: 8px;
     text-align: left;
