@@ -2,64 +2,59 @@
 <html lang="pt">
 
 <head>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Admin</title>
-
   <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
 
-  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
-    <h1 style="margin: 0;">Adicionar Produto</h1>
-    <button id="themeToggle">🌙</button>
-  </div>
+  <div class="admin-panel">
 
-  <input type="text" id="name" placeholder="Nome">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+      <h1 style="margin: 0;">Adicionar Produto</h1>
+      <button id="themeToggle">🌙</button>
+    </div>
 
-  <input type="text" id="sku" placeholder="SKU">
+    <input type="text" id="name" placeholder="Nome">
 
-  <input type="text" id="sizes" placeholder="42 (2),43 (1)">
+    <input type="text" id="sku" placeholder="SKU">
 
-  <input type="number" id="oldPrice" placeholder="Preço antigo">
+    <input type="text" id="sizes" placeholder="42 (2),43 (1)">
 
-  <input type="number" id="price" placeholder="Preço">
+    <input type="number" id="oldPrice" placeholder="Preço antigo">
 
-  <input type="text" id="image" placeholder="URL imagem">
+    <input type="number" id="price" placeholder="Preço">
 
-  <select id="category">
+    <input type="text" id="image" placeholder="URL imagem">
 
-    <option value="sneakers">Sneakers</option>
+    <select id="category">
+      <option value="sneakers">Sneakers</option>
+      <option value="clothing">Clothing</option>
+    </select>
 
-    <option value="clothing">Clothing</option>
+    <button id="addProduct">
+      Adicionar Produto
+    </button>
+    
+    <button id="cancelEdit" style="display: none; background: #444;">
+      Cancelar Edição
+    </button>
 
-  </select>
+    <button id="logoutBtn">
+      Logout
+    </button>
 
-  <button id="addProduct">
-    Adicionar Produto
-  </button>
-  
-  <button id="cancelEdit" style="display: none; background: #444;">
-    Cancelar Edição
-  </button>
+    <hr style="border: 1px solid #2a2a2a; margin: 20px 0; border-radius: 2px;">
+    
+    <h2 style="text-align: center; margin-bottom: 10px;">Gerir Inventário</h2>
+    
+    <div id="adminProductList" class="admin-list"></div>
 
-  <button id="logoutBtn">
-    Logout
-  </button>
-
-  <hr style="border: 1px solid #2a2a2a; margin: 20px 0; border-radius: 2px;">
-  
-  <h2 style="text-align: center; margin-bottom: 10px;">Gerir Inventário</h2>
-  
-  <div id="adminProductList" class="admin-list"></div>
-
-</div> <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-<script src="supabase.js"></script>
-<script src="admin.js"></script>
+  </div> <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script src="supabase.js"></script>
+  <script src="admin.js"></script>
 
 </body>
 </html>
