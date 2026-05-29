@@ -397,13 +397,6 @@ body.light #themeToggle:hover {
   color: white;
 }
 
-body.light .controls input,
-body.light .controls select {
-  background: white;
-  color: black;
-  border: 1px solid #ddd;
-}
-
 body.light .controls select option {
   background: white;
   color: black;
@@ -542,15 +535,15 @@ body.light .controls select option {
   text-align: center;
   padding: 30px 20px;
   margin-top: 40px;
-  border-top: 2px solid #7cff6b; /* A tua linha verde igual ao preço! */
+  border-top: 1px solid #7cff6b; /* Agora está com 1px, mais fina e elegante */
   color: #8e8e8e;
-  font-size: 0.75rem; /* Texto mais pequeno */
+  font-size: 0.75rem; 
   line-height: 1.8;
   background-color: #0f0f0f;
 }
 
 body.light .site-footer {
-  border-top: 1px solid #2e7d32; /* Linha verde escura para o modo claro */
+  border-top: 2px solid #2e7d32; /* Linha verde escura para o modo claro */
   color: #666;
   background-color: #f2f2f2;
 }
