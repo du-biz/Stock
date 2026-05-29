@@ -1,7 +1,7 @@
 const translations = {
 
   pt: {
-    heroTitle: "Sneaker and Clothing Inventory",
+    heroTitle: "Sneakers and Clothing Inventory",
     search: "Pesquisar produto...",
     sort: "Ordenar",
     lowHigh: "Preço: Menor → Maior",
@@ -15,7 +15,7 @@ const translations = {
   },
 
   en: {
-    heroTitle: "Sneaker and Clothing Inventory",
+    heroTitle: "Sneakers and Clothing Inventory",
     search: "Search product...",
     sort: "Sort",
     lowHigh: "Price: Low → High",
