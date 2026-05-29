@@ -331,6 +331,11 @@ body.light .lang-btn:hover:not(.active-lang) {
   border-radius: 12px;
   cursor: pointer;
   transition: background 0.2s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  line-height: 1; /* Impede que o emoji descambe para o fundo da caixa */
 }
 
 #themeToggle:hover {
