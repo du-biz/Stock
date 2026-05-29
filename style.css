@@ -223,6 +223,7 @@ body.light .card {
   color: #7cff6b;
   font-size: 0.9rem;
   font-weight: 600;
+  text-align: left;
 }
 
 body.light .sizes-title {
@@ -560,10 +561,17 @@ admin-list {
     line-height: 1.4;
   }
 
-  .info, .sizes-title {
+.info {
     font-size: 0.75rem;
     margin-bottom: 8px;
     text-align: left;
+  }
+
+  .sizes-title {
+    font-size: 0.75rem;
+    margin-bottom: 8px;
+    text-align: left;
+    color: #7cff6b; /* Força o verde no telemóvel */
   }
 
   .size-badge {
