@@ -166,6 +166,9 @@ body.light .stat-box h2 {
   transition: 0.35s ease;
   border: 1px solid #2a2a2a;
   box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column; 
+  height: 100%;
 }
 
 .card:hover {
@@ -181,16 +184,20 @@ body.light .card {
 .card img {
   width: 100%;
   height: 260px;
-  object-fit: contain; /* Faz a imagem caber toda sem cortar */
-  object-position: center; /* Centra a imagem no meio do espaço */
-  background-color: white; /* Preenche os espaços vazios com branco */
+  object-fit: contain;
+  object-position: center;
+  background-color: white;
   display: block;
   cursor: pointer;
-  padding: 10px; /* Dá um respiro à volta do ténis */
+  padding: 10px;
 }
 
 .card-content {
   padding: 26px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  text-align: left;
 }
 
 .card h3 {
@@ -208,7 +215,7 @@ body.light .card {
 }
 
 .sizes-wrapper {
-  margin-top: 16px;
+  margin-top: auto;
 }
 
 .sizes-title {
@@ -532,21 +539,23 @@ admin-list {
 
   .grid {
     padding: 15px;
-    grid-template-columns: repeat(2, 1fr); /* Coloca 2 cartões lado a lado no telemóvel */
-    gap: 10px; /* Reduz o espaço entre os cartões */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    align-items: stretch; /* CORREÇÃO: Garante que os cartões não ficam um mais alto que o outro */
   }
 
   .card img {
-    height: 140px; /* Imagem mais pequena no mobile */
+    height: 140px;
     padding: 5px;
   }
 
   .card-content {
-    padding: 12px; /* Menos espaço dentro do cartão */
+    padding: 12px;
+    text-align: left; /* Garante que fica à esquerda também no telemóvel */
   }
 
   .card h3 {
-    font-size: 0.85rem; /* Letra do título mais pequena */
+    font-size: 0.85rem;
     margin-bottom: 8px;
     line-height: 1.4;
   }
@@ -554,6 +563,7 @@ admin-list {
   .info, .sizes-title {
     font-size: 0.75rem;
     margin-bottom: 8px;
+    text-align: left;
   }
 
   .size-badge {
@@ -562,7 +572,7 @@ admin-list {
   }
 
   .price {
-    font-size: 1.1rem; /* Preço mais pequeno */
+    font-size: 1.1rem;
   }
 
   .old-price {
@@ -571,13 +581,13 @@ admin-list {
 
   /* Ajustes do Admin Panel no Mobile */
   .admin-panel {
-    margin: 30px 20px; /* Dá margens laterais para não colar aos cantos do ecrã */
+    margin: 30px 20px;
   }
 
   .admin-panel input,
   .admin-panel select,
   .admin-panel button {
-    padding: 12px; /* Diminui a altura das caixas de texto */
-    font-size: 0.9rem;
+    padding: 16px; /* Aumenta a altura das caixas de volta ao normal */
+    font-size: 16px !important; /* CORREÇÃO: O tamanho 16px desativa automaticamente o zoom irritante no iOS/Android */
   }
 }
