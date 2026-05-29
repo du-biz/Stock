@@ -542,16 +542,16 @@ body.light .controls select option {
   .grid {
     padding: 15px;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+    grid-template-columns: 1fr;
+    gap: 20px;
     align-items: stretch; 
     align-content: start;
   }
 
-.card img {
-    height: 140px;
-    min-height: 140px;
-    padding: 5px;
+  .card img {
+    height: 220px;
+    min-height: 220px; 
+    padding: 10px;
   }
 
   .card-content {
