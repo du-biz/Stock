@@ -1,11 +1,10 @@
 const translations = {
-
   pt: {
     heroTitle: "Sneakers and Clothing Inventory",
     search: "Pesquisar produto...",
-    sort: "Ordenar",
-    lowHigh: "Preço: Menor → Maior",
-    highLow: "Preço: Maior → Menor",
+    sortDefault: "≡ Padrão",
+    sortLowHigh: "↑ Menor-Maior",
+    sortHighLow: "↓ Maior-Menor",
     items: "Items",
     total: "Valor Total",
     sneakers: "Sneakers",
@@ -14,13 +13,12 @@ const translations = {
     sizes: "Tamanhos",
     shipping: "Preços de envio não estão incluídos",
   },
-
   en: {
     heroTitle: "Sneakers and Clothing Inventory",
     search: "Search product...",
-    sort: "Sort",
-    lowHigh: "Price: Low → High",
-    highLow: "Price: High → Low",
+    sortDefault: "≡ Default",
+    sortLowHigh: "↑ Low-High",
+    sortHighLow: "↓ High-Low",
     items: "Items",
     total: "Total Value",
     sneakers: "Sneakers",
@@ -29,7 +27,6 @@ const translations = {
     sizes: "Sizes",
     shipping: "Shipping prices are not included",
   }
-
 };
 
 let products = {
@@ -38,7 +35,6 @@ let products = {
 };
 
 async function loadProducts() {
-
   const { data, error } = await supabaseClient
     .from("products")
     .select("*");
@@ -54,7 +50,6 @@ async function loadProducts() {
   };
 
   data.forEach(item => {
-
     const formatted = {
       ...item,
       sizes: item.sizes.split(",")
@@ -63,27 +58,24 @@ async function loadProducts() {
     if(item.category === "sneakers") {
       products.sneakers.push(formatted);
     }
-
     if(item.category === "clothing") {
       products.clothing.push(formatted);
     }
-
   });
 
   renderProducts();
-
 }
 
 loadProducts();
 
 let currentLanguage = "pt";
 let currentCategory = "sneakers";
-let currentSort = "default"; // NOVA VARIÁVEL DE ESTADO
+let currentSort = "default";
 
 const grid = document.getElementById("productGrid");
 const tabs = document.querySelectorAll(".tab");
 const searchInput = document.getElementById("searchInput");
-const sortBtns = document.querySelectorAll(".sort-btn"); // NOVA REFERÊNCIA
+const sortBtns = document.querySelectorAll(".sort-btn");
 
 function updateLanguage() {
   const t = translations[currentLanguage];
@@ -114,7 +106,6 @@ function renderProducts() {
     item.name.toLowerCase().includes(search)
   );
 
-  // NOVA LÓGICA DE ORDENAÇÃO
   if (currentSort === "low-high") {
     items.sort((a, b) => a.price - b.price);
   }
@@ -147,87 +138,63 @@ function renderProducts() {
   `).join("");
 }
 
-renderProducts();
-
 searchInput.addEventListener("input", renderProducts);
 
-// NOVO EVENTO DE CLIQUE NOS BOTÕES DE ORDENAÇÃO
 sortBtns.forEach(btn => {
   btn.addEventListener("click", () => {
-    // Remove a classe active de todos
     sortBtns.forEach(b => b.classList.remove("active-sort"));
-    // Adiciona ao botão clicado
     btn.classList.add("active-sort");
-    // Atualiza a variável de estado
     currentSort = btn.dataset.sort;
     renderProducts();
   });
 });
 
-searchInput.addEventListener("input", renderProducts);
-
 tabs.forEach(tab => {
-
   tab.addEventListener("click", () => {
-
     tabs.forEach(t => t.classList.remove("active"));
-
     tab.classList.add("active");
-
     currentCategory = tab.dataset.category;
-
     renderProducts();
-
   });
-
 });
 
 const ptBtn = document.getElementById("ptBtn");
 const enBtn = document.getElementById("enBtn");
 
 ptBtn.addEventListener("click", () => {
-
   currentLanguage = "pt";
-
   ptBtn.classList.add("active-lang");
   enBtn.classList.remove("active-lang");
-
   updateLanguage();
-
 });
 
 enBtn.addEventListener("click", () => {
-
   currentLanguage = "en";
-
   enBtn.classList.add("active-lang");
   ptBtn.classList.remove("active-lang");
-
   updateLanguage();
-
 });
 
 const themeToggle = document.getElementById("themeToggle");
 
 themeToggle.addEventListener("click", () => {
   if(document.body.classList.contains("light")) {
-    document.body.classList.remove("light"); // Fica escuro
-    themeToggle.innerHTML = "☀️"; // Ícone para voltar ao claro
+    document.body.classList.remove("light"); 
+    themeToggle.innerHTML = "☀️"; 
   } else {
-    document.body.classList.add("light"); // Fica claro
-    themeToggle.innerHTML = "🌙"; // Ícone para voltar ao escuro
+    document.body.classList.add("light"); 
+    themeToggle.innerHTML = "🌙"; 
   }
 });
 
 updateLanguage();
 renderProducts();
 
-// Lógica para abrir imagens em grande
 const imageModal = document.getElementById("imageModal");
 const modalImg = document.getElementById("modalImg");
 
 function openModal(imageSrc) {
-  if(modalImg && imageModal) { // Pequena verificação de segurança
+  if(modalImg && imageModal) { 
     modalImg.src = imageSrc;
     imageModal.style.display = "flex";
   }
@@ -239,7 +206,6 @@ function closeModal() {
   }
 }
 
-// Fechar a imagem se clicar fora
 if(imageModal) {
   imageModal.addEventListener("click", (e) => {
     if (e.target === imageModal) {
