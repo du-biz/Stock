@@ -21,6 +21,6 @@ loginBtn.addEventListener("click", async () => {
 
   }
 
-  window.location.href = "/stock/admin.html";
+  window.location.href = "admin.html";
 
 });
