@@ -17,116 +17,123 @@ async function checkAuth() {
 checkAuth();
 
 const addButton = document.getElementById("addProduct");
+const cancelBtn = document.getElementById("cancelEdit");
 
-addButton.addEventListener("click", async () => {
+// Variáveis para sabermos se estamos a editar algum produto
+let editingProductId = null;
+let allAdminProducts = []; // Guarda os produtos todos para os encontrarmos facilmente
 
-  const product = {
-
-    name: document.getElementById("name").value,
-
-    sku: document.getElementById("sku").value,
-
-    sizes: document.getElementById("sizes").value,
-
-    old_price: document.getElementById("oldPrice").value,
-
-    price: document.getElementById("price").value,
-
-    image: document.getElementById("image").value,
-
-    category: document.getElementById("category").value
-
-  };
-
-  const { error } = await supabaseClient
-    .from("products")
-    .insert([product]);
-
-  if(error) {
-    alert("Erro");
-    console.log(error);
-    return;
-  }
-
-  alert("Produto adicionado");
-  loadAdminProducts();
-
-});
-
-const logoutBtn = document.getElementById("logoutBtn");
-
-logoutBtn.addEventListener("click", async () => {
-
-  await supabaseClient.auth.signOut();
-
-  window.location.href = "/stock/login.html";
-
-});
-
-// Função para carregar e mostrar a lista de produtos no painel
 async function loadAdminProducts() {
   const { data, error } = await supabaseClient
     .from("products")
     .select("*")
-    .order('id', { ascending: false }); // Mostra os mais recentes primeiro
+    .order('id', { ascending: false });
 
   if (error) {
     console.log(error);
     return;
   }
 
+  allAdminProducts = data; // Guarda na memória
   const list = document.getElementById("adminProductList");
   
   list.innerHTML = data.map(item => `
     <div class="admin-item">
       <div class="admin-item-info">
         <strong>${item.name}</strong>
-        <span>SKU: ${item.sku} | Tamanhos: ${item.sizes}</span>
+        <span>SKU: ${item.sku} | Preço: ${item.price}€</span>
       </div>
       <div class="admin-item-actions">
-        <button class="btn-edit" onclick="updateSizes('${item.id}', '${item.sizes}')">📝</button>
+        <button class="btn-edit" onclick="editProduct('${item.id}')">📝</button>
         <button class="btn-delete" onclick="deleteProduct('${item.id}')">🗑️</button>
       </div>
     </div>
   `).join("");
 }
 
-// Função para Eliminar
+window.editProduct = function(id) {
+  const product = allAdminProducts.find(p => p.id == id);
+  if(!product) return;
+
+  document.getElementById("name").value = product.name;
+  document.getElementById("sku").value = product.sku;
+  document.getElementById("sizes").value = product.sizes;
+  document.getElementById("oldPrice").value = product.old_price || "";
+  document.getElementById("price").value = product.price;
+  document.getElementById("image").value = product.image;
+  document.getElementById("category").value = product.category;
+
+  editingProductId = product.id;
+  addButton.textContent = "Guardar Alterações";
+  cancelBtn.style.display = "block";
+  
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+
+function resetForm() {
+  document.getElementById("name").value = "";
+  document.getElementById("sku").value = "";
+  document.getElementById("sizes").value = "";
+  document.getElementById("oldPrice").value = "";
+  document.getElementById("price").value = "";
+  document.getElementById("image").value = "";
+  document.getElementById("category").value = "sneakers";
+  
+  editingProductId = null;
+  addButton.textContent = "Adicionar Produto";
+  cancelBtn.style.display = "none";
+}
+
+if (cancelBtn) {
+  cancelBtn.addEventListener("click", resetForm);
+}
+
+addButton.addEventListener("click", async () => {
+  const productData = {
+    name: document.getElementById("name").value,
+    sku: document.getElementById("sku").value,
+    sizes: document.getElementById("sizes").value,
+    old_price: document.getElementById("oldPrice").value || null, // Permite preços antigos vazios
+    price: document.getElementById("price").value,
+    image: document.getElementById("image").value,
+    category: document.getElementById("category").value
+  };
+
+  if (editingProductId) {
+    const { error } = await supabaseClient
+      .from("products")
+      .update(productData)
+      .eq("id", editingProductId);
+    
+    if(error) { alert("Erro ao atualizar!"); console.log(error); return; }
+    alert("Produto atualizado!");
+
+  } else {
+    const { error } = await supabaseClient
+      .from("products")
+      .insert([productData]);
+
+    if(error) { alert("Erro ao adicionar!"); console.log(error); return; }
+    alert("Produto adicionado!");
+  }
+
+  resetForm();
+  loadAdminProducts();
+});
+
 window.deleteProduct = async function(id) {
-  // Pede confirmação antes de apagar
   if (!confirm("Tens a certeza que queres eliminar este produto?")) return;
 
-  const { error } = await supabaseClient
-    .from("products")
-    .delete()
-    .eq("id", id); // Apaga o produto onde o ID for igual a este
-
-  if (error) {
-    alert("Erro ao eliminar o produto.");
-    console.log(error);
-    return;
-  }
+  const { error } = await supabaseClient.from("products").delete().eq("id", id);
+  if (error) { alert("Erro ao eliminar o produto."); return; }
 
   loadAdminProducts();
 };
 
-window.updateSizes = async function(id, currentSizes) {
-  const newSizes = prompt("Atualiza os tamanhos e stock (ex: 42 (2),43 (1)):", currentSizes);
-
-  if (newSizes === null || newSizes === currentSizes) return;
-
-  const { error } = await supabaseClient
-    .from("products")
-    .update({ sizes: newSizes })
-    .eq("id", id);
-
-  if (error) {
-    alert("Erro ao atualizar o stock.");
-    console.log(error);
-    return;
-  }
-
-  loadAdminProducts();
-};
+const logoutBtn = document.getElementById("logoutBtn");
+logoutBtn.addEventListener("click", async () => {
+  await supabaseClient.auth.signOut();
+  window.location.href = "login.html";
+});
 
 loadAdminProducts();
