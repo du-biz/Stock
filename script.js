@@ -85,9 +85,7 @@ const sortSelect = document.getElementById("sortSelect");
 
 function updateLanguage() {
 
-  const t = translations[currentLanguage];
-
-  document.querySelector(".hero h1").textContent = t.heroTitle;
+  const t = translations[currentLanguage]
 
   searchInput.placeholder = t.search;
 
