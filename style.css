@@ -343,12 +343,12 @@ body.light .lang-btn:hover:not(.active-lang) {
 }
 
 body.light #themeToggle {
-  background: white;
+  background: #ececec; /* Fica cinzento claro */
   color: black;
 }
 
 body.light #themeToggle:hover {
-  background: #e0e0e0;
+  background: #d4d4d4; /* Fica um cinzento um bocadinho mais escuro ao passar o rato */
 }
 
 #langToggle {
