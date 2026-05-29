@@ -236,20 +236,28 @@ themeToggle.addEventListener("click", () => {
 updateLanguage();
 renderProducts();
 
+// Lógica para abrir imagens em grande
 const imageModal = document.getElementById("imageModal");
 const modalImg = document.getElementById("modalImg");
 
 function openModal(imageSrc) {
-  modalImg.src = imageSrc;
-  imageModal.style.display = "flex";
+  if(modalImg && imageModal) { // Pequena verificação de segurança
+    modalImg.src = imageSrc;
+    imageModal.style.display = "flex";
+  }
 }
 
 function closeModal() {
-  imageModal.style.display = "none";
+  if(imageModal) {
+    imageModal.style.display = "none";
+  }
 }
 
-imageModal.addEventListener("click", (e) => {
-  if (e.target === imageModal) {
-    closeModal();
-  }
-});
+// Fechar a imagem se clicar fora
+if(imageModal) {
+  imageModal.addEventListener("click", (e) => {
+    if (e.target === imageModal) {
+      closeModal();
+    }
+  });
+}
