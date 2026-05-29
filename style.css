@@ -118,8 +118,14 @@ body.light .tab.active {
 
 body.light .controls input,
 body.light .controls select {
-  background: white;
+  background-color: white; /* Usa background-color para não apagar a setinha */
   color: black;
+  border: 1px solid #ddd;
+}
+
+/* Setinha verde escura específica para o modo claro */
+body.light .controls select {
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="%232e7d32" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpolyline points="6 9 12 15 18 9"%3E%3C/polyline%3E%3C/svg%3E');
 }
 
 .stats {
@@ -544,7 +550,7 @@ body.light .controls select option {
 }
 
 body.light .site-footer {
-  border-top: 2px solid #2e7d32; /* Linha verde escura para o modo claro */
+  border-top: 1px solid #2e7d32; /* Linha verde escura para o modo claro */
   color: #666;
   background-color: #f2f2f2;
 }
