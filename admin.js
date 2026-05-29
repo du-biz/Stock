@@ -49,6 +49,7 @@ addButton.addEventListener("click", async () => {
   }
 
   alert("Produto adicionado");
+  loadAdminProducts();
 
 });
 
