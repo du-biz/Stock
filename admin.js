@@ -1,17 +1,11 @@
 async function checkAuth() {
-
   const {
-
     data: { session }
-
   } = await supabaseClient.auth.getSession();
 
   if(!session) {
-
     window.location.href = "login.html";
-
   }
-
 }
 
 checkAuth();
@@ -62,6 +56,10 @@ window.editProduct = function(id) {
   document.getElementById("price").value = product.price;
   document.getElementById("image").value = product.image;
   document.getElementById("category").value = product.category;
+  
+  // Limpa o ficheiro selecionado caso estivesse algum
+  const fileInput = document.getElementById("imageFile");
+  if(fileInput) fileInput.value = "";
 
   editingProductId = product.id;
   addButton.textContent = "Guardar Alterações";
@@ -79,6 +77,10 @@ function resetForm() {
   document.getElementById("image").value = "";
   document.getElementById("category").value = "sneakers";
   
+  // Limpa o campo do ficheiro do PC
+  const fileInput = document.getElementById("imageFile");
+  if(fileInput) fileInput.value = "";
+  
   editingProductId = null;
   addButton.textContent = "Adicionar Produto";
   cancelBtn.style.display = "none";
@@ -89,36 +91,96 @@ if (cancelBtn) {
 }
 
 addButton.addEventListener("click", async () => {
-  const productData = {
-    name: document.getElementById("name").value,
-    sku: document.getElementById("sku").value,
-    sizes: document.getElementById("sizes").value,
-    old_price: document.getElementById("oldPrice").value || null, // Permite preços antigos vazios
-    price: document.getElementById("price").value,
-    image: document.getElementById("image").value,
-    category: document.getElementById("category").value
-  };
+  // 1. Recolhe os valores
+  const name = document.getElementById("name").value;
+  const sku = document.getElementById("sku").value;
+  const sizes = document.getElementById("sizes").value;
+  const oldPrice = document.getElementById("oldPrice").value;
+  const price = document.getElementById("price").value;
+  const category = document.getElementById("category").value;
+  
+  let imageUrl = document.getElementById("image").value; // O URL manual
+  const fileInput = document.getElementById("imageFile");
+  const imageFile = fileInput ? fileInput.files[0] : null; // O ficheiro do PC (se existir)
 
-  if (editingProductId) {
-    const { error } = await supabaseClient
-      .from("products")
-      .update(productData)
-      .eq("id", editingProductId);
-    
-    if(error) { alert("Erro ao atualizar!"); console.log(error); return; }
-    alert("Produto atualizado!");
-
-  } else {
-    const { error } = await supabaseClient
-      .from("products")
-      .insert([productData]);
-
-    if(error) { alert("Erro ao adicionar!"); console.log(error); return; }
-    alert("Produto adicionado!");
+  // Validação
+  if (!name || !sku || !price || !sizes) {
+    alert("Por favor, preenche os campos obrigatórios (Nome, SKU, Tamanhos e Preço)!");
+    return;
   }
 
-  resetForm();
-  loadAdminProducts();
+  // Previne cliques duplos e avisa que está a carregar
+  const originalBtnText = addButton.textContent;
+  addButton.textContent = "A guardar...";
+  addButton.disabled = true;
+
+  try {
+    // 2. Se o utilizador escolheu um ficheiro do PC, fazemos o upload para o Supabase
+    if (imageFile) {
+      const fileExt = imageFile.name.split('.').pop();
+      const fileName = `${Math.random()}.${fileExt}`; // Gera nome aleatório
+
+      // Faz upload para a pasta 'imagens' do Storage
+      const { data: uploadData, error: uploadError } = await supabaseClient.storage
+        .from('imagens')
+        .upload(fileName, imageFile);
+
+      if (uploadError) {
+        alert("Erro ao fazer upload da imagem: " + uploadError.message);
+        addButton.textContent = originalBtnText;
+        addButton.disabled = false;
+        return;
+      }
+
+      // Vai buscar o link oficial da imagem gerada
+      const { data: publicUrlData } = supabaseClient.storage
+        .from('imagens')
+        .getPublicUrl(fileName);
+
+      // Substitui o URL manual pelo URL verdadeiro do ficheiro!
+      imageUrl = publicUrlData.publicUrl;
+    }
+
+    // 3. Constrói o objeto do produto com a imagem correta
+    const productData = {
+      name: name,
+      sku: sku,
+      sizes: sizes,
+      old_price: oldPrice ? parseFloat(oldPrice) : null,
+      price: parseFloat(price),
+      image: imageUrl,
+      category: category
+    };
+
+    // 4. Guarda ou atualiza na Base de Dados
+    if (editingProductId) {
+      const { error } = await supabaseClient
+        .from("products")
+        .update(productData)
+        .eq("id", editingProductId);
+      
+      if(error) throw error;
+      alert("Produto atualizado com sucesso!");
+    } else {
+      const { error } = await supabaseClient
+        .from("products")
+        .insert([productData]);
+
+      if(error) throw error;
+      alert("Produto adicionado com sucesso!");
+    }
+
+    resetForm();
+    loadAdminProducts();
+
+  } catch (error) {
+    alert("Ocorreu um erro ao guardar. Vê a consola para mais detalhes.");
+    console.log(error);
+  } finally {
+    // Restaura o botão
+    addButton.textContent = originalBtnText;
+    addButton.disabled = false;
+  }
 });
 
 window.deleteProduct = async function(id) {
