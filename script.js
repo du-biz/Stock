@@ -50,6 +50,9 @@ async function loadProducts() {
   };
 
   data.forEach(item => {
+    // Se o produto estiver marcado como oculto no Supabase, ignora-o e passa à frente
+    if (item.is_hidden === true) return; 
+
     const formatted = {
       ...item,
       sizes: item.sizes.split(",")
@@ -68,24 +71,6 @@ async function loadProducts() {
 
 loadProducts();
 
-data.forEach(item => {
-
-    if (item.is_hidden === true) return; // Se estiver oculto, salta para o próximo e não mostra!
-
-    const formatted = {
-      ...item,
-      sizes: item.sizes.split(",")
-    };
-
-    if(item.category === "sneakers") {
-      products.sneakers.push(formatted);
-    }
-
-    if(item.category === "clothing") {
-      products.clothing.push(formatted);
-    }
-
-  });
 let currentLanguage = "pt";
 let currentCategory = "sneakers";
 let currentSort = "default";
