@@ -77,6 +77,7 @@ function resetForm() {
   document.getElementById("price").value = "";
   document.getElementById("image").value = "";
   document.getElementById("category").value = "sneakers";
+  document.getElementById("isHidden").checked = false;
   
   // Limpa o campo do ficheiro do PC
   const fileInput = document.getElementById("imageFile");
@@ -151,6 +152,7 @@ addButton.addEventListener("click", async () => {
       price: parseFloat(price),
       image: imageUrl,
       category: category
+      is_hidden: document.getElementById("isHidden").checked
     };
 
     // 4. Guarda ou atualiza na Base de Dados
