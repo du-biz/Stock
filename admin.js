@@ -31,10 +31,10 @@ async function loadAdminProducts() {
   allAdminProducts = data; // Guarda na memória
   const list = document.getElementById("adminProductList");
   
-  list.innerHTML = data.map(item => `
-    <div class="admin-item">
+list.innerHTML = data.map(item => `
+    <div class="admin-item" style="${item.is_hidden ? 'opacity: 0.5;' : ''}">
       <div class="admin-item-info">
-        <strong>${item.name}</strong>
+        <strong>${item.name} ${item.is_hidden ? '<span style="color: #ff4d4d; font-size: 0.8rem;">[OCULTO]</span>' : ''}</strong>
         <span>SKU: ${item.sku} | Preço: ${item.price}€</span>
       </div>
       <div class="admin-item-actions">
