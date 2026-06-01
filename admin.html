@@ -33,10 +33,15 @@
     
     <input type="file" id="imageFile" accept="image/*">
     
-    <select id="category">
+   <select id="category">
       <option value="sneakers">Sneakers</option>
       <option value="clothing">Clothing</option>
     </select>
+
+    <label style="display: flex; align-items: center; gap: 10px; color: #8e8e8e; cursor: pointer; font-size: 0.95rem;">
+      <input type="checkbox" id="isHidden" style="width: 20px; height: 20px; min-width: auto; padding: 0;">
+      Ocultar produto do site público
+    </label>
 
     <button id="addProduct">
       Adicionar Produto
