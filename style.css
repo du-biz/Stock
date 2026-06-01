@@ -625,6 +625,42 @@ body.light .btn-delete {
   color: white !important;
 }
 
+/* --- ESTILOS DA CAIXA DE UPLOAD DE FICHEIRO --- */
+.admin-panel input[type="file"] {
+  padding: 12px 16px;
+  cursor: pointer;
+  color: #8e8e8e; /* Cor do texto do nome do ficheiro (Escuro) */
+}
+
+.admin-panel input[type="file"]::file-selector-button {
+  background: #2a2a2a;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-right: 15px;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.admin-panel input[type="file"]::file-selector-button:hover {
+  background: #444;
+}
+
+body.light .admin-panel input[type="file"] {
+  color: #666; /* Cor do texto do nome do ficheiro (Claro) */
+}
+
+body.light .admin-panel input[type="file"]::file-selector-button {
+  background: #e0e0e0;
+  color: black;
+}
+
+body.light .admin-panel input[type="file"]::file-selector-button:hover {
+  background: #d4d4d4;
+}
+
 @media(max-width: 768px) {
   .navbar {
     padding: 15px;
