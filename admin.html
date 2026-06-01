@@ -12,34 +12,28 @@
 
   <div class="admin-panel">
 
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-      <h1 style="margin: 0;">Adicionar Produto</h1>
+    <div class="admin-header">
+      <h1>Adicionar Produto</h1>
       <button id="themeToggle">🌙</button>
     </div>
 
     <input type="text" id="name" placeholder="Nome">
-
     <input type="text" id="sku" placeholder="SKU">
-
     <input type="text" id="sizes" placeholder="42 (2),43 (1)">
-
     <input type="number" id="oldPrice" placeholder="Preço antigo">
-
     <input type="number" id="price" placeholder="Preço">
-
+    
     <input type="text" id="image" placeholder="URL da imagem (Opcional)">
-    
-    <p style="text-align: center; color: #8e8e8e; font-size: 0.85rem; margin: -5px 0;">OU FAZ UPLOAD:</p>
-    
+    <p class="upload-divider">OU FAZ UPLOAD:</p>
     <input type="file" id="imageFile" accept="image/*">
-    
-   <select id="category">
+
+    <select id="category">
       <option value="sneakers">Sneakers</option>
       <option value="clothing">Clothing</option>
     </select>
 
-    <label style="display: flex; align-items: center; gap: 10px; color: #8e8e8e; cursor: pointer; font-size: 0.95rem;">
-      <input type="checkbox" id="isHidden" style="width: 20px; height: 20px; min-width: auto; padding: 0;">
+    <label class="checkbox-label">
+      <input type="checkbox" id="isHidden" class="checkbox-input">
       Ocultar produto do site público
     </label>
 
@@ -47,7 +41,7 @@
       Adicionar Produto
     </button>
     
-    <button id="cancelEdit" style="display: none; background: #444;">
+    <button id="cancelEdit" class="btn-cancel">
       Cancelar Edição
     </button>
 
@@ -55,9 +49,9 @@
       Logout
     </button>
 
-    <hr style="border: 1px solid #2a2a2a; margin: 20px 0; border-radius: 2px;">
+    <hr class="admin-divider">
     
-    <h2 style="text-align: center; margin-bottom: 10px;">Gerir Inventário</h2>
+    <h2 class="inventory-title">Gerir Inventário</h2>
     
     <div id="adminProductList" class="admin-list"></div>
 
