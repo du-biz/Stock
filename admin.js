@@ -56,6 +56,7 @@ window.editProduct = function(id) {
   document.getElementById("price").value = product.price;
   document.getElementById("image").value = product.image;
   document.getElementById("category").value = product.category;
+  document.getElementById("isHidden").checked = product.is_hidden === true;
   
   // Limpa o ficheiro selecionado caso estivesse algum
   const fileInput = document.getElementById("imageFile");
