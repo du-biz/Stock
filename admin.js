@@ -31,7 +31,7 @@ async function loadAdminProducts() {
   allAdminProducts = data; // Guarda na memória
   const list = document.getElementById("adminProductList");
   
-list.innerHTML = data.map(item => `
+  list.innerHTML = data.map(item => `
     <div class="admin-item" style="${item.is_hidden ? 'opacity: 0.5;' : ''}">
       <div class="admin-item-info">
         <strong>${item.name} ${item.is_hidden ? '<span style="color: #ff4d4d; font-size: 0.8rem;">[OCULTO]</span>' : ''}</strong>
@@ -143,7 +143,7 @@ addButton.addEventListener("click", async () => {
       imageUrl = publicUrlData.publicUrl;
     }
 
-    // 3. Constrói o objeto do produto com a imagem correta
+    // 3. Constrói o objeto do produto com a imagem correta (VÍRGULA CORRIGIDA AQUI)
     const productData = {
       name: name,
       sku: sku,
@@ -151,7 +151,7 @@ addButton.addEventListener("click", async () => {
       old_price: oldPrice ? parseFloat(oldPrice) : null,
       price: parseFloat(price),
       image: imageUrl,
-      category: category
+      category: category,
       is_hidden: document.getElementById("isHidden").checked
     };
 
@@ -163,7 +163,7 @@ addButton.addEventListener("click", async () => {
         .eq("id", editingProductId);
       
       if(error) throw error;
-      alert("Produto atualizado com sucesso!");
+      alert("Produto updated com sucesso!");
     } else {
       const { error } = await supabaseClient
         .from("products")
