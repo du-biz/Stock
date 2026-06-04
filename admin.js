@@ -33,10 +33,15 @@ async function loadAdminProducts() {
   
   list.innerHTML = data.map(item => `
     <div class="admin-item" style="${item.is_hidden ? 'opacity: 0.5;' : ''}">
-      <div class="admin-item-info">
-        <strong>${item.name} ${item.is_hidden ? '<span style="color: #ff4d4d; font-size: 0.8rem;">[OCULTO]</span>' : ''}</strong>
-        <span>SKU: ${item.sku} | Preço: ${item.price}€</span>
+      <div class="admin-item-content">
+        <img src="${item.image || 'placeholder.png'}" alt="${item.name}" class="admin-item-thumb">
+        
+        <div class="admin-item-info">
+          <strong>${item.name} ${item.is_hidden ? '<span style="color: #ff4d4d; font-size: 0.8rem;">[OCULTO]</span>' : ''}</strong>
+          <span>SKU: ${item.sku} | Preço: ${item.price}€</span>
+        </div>
       </div>
+      
       <div class="admin-item-actions">
         <button class="btn-edit" onclick="editProduct('${item.id}')">📝</button>
         <button class="btn-delete" onclick="deleteProduct('${item.id}')">🗑️</button>
