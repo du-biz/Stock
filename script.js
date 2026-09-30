@@ -71,7 +71,7 @@ async function loadProducts() {
 
 loadProducts();
 
-let currentLanguage = "pt";
+let currentLanguage = "en";
 let currentCategory = "sneakers";
 let currentSort = "default";
 
