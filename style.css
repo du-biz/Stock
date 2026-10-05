@@ -129,7 +129,7 @@ body.light .controls input {
   border: 1px solid #ddd;
 }
 
-/* --- ESTILOS DOS NOVOS BOTÕES DE ORDENAR --- */
+/* --- ESTILOS DOS BOTÕES DE ORDENAR --- */
 .sort-buttons {
   display: flex;
   gap: 10px;
@@ -227,7 +227,6 @@ body.light .stat-box h2 {
   width: 100%;
 }
 
-/* Só aplica o salto se o aparelho tiver um rato real (bloqueia o toque do telemóvel) */
 @media (hover: hover) and (pointer: fine) {
   .card:hover {
     transform: translateY(-10px);
@@ -260,41 +259,71 @@ body.light .card {
   text-align: left;
 }
 
-/* 1. Força os títulos a terem uma altura fixa mínima equivalente a 2 linhas,
-   evitando que os cartões com 1 linha empurrem o SKU para cima */
+/* 1. Altura fixa mínima de 2 linhas para os títulos */
 .card h3 {
   margin-bottom: 8px;
   line-height: 1.4;
   font-size: 1.12rem;
   font-weight: 600;
-  min-height: 2.8em; /* Garante espaço igual a 2 linhas para todos */
+  min-height: 2.8em;
 }
 
-/* 2. Mantém o SKU com espaçamento regular */
+/* 2. SKU alinhado */
 .info {
   color: #9e9e9e;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
   font-size: 0.95rem;
   line-height: 1.4;
 }
 
-/* 3. Define uma altura mínima fixa para a área dos tamanhos.
-   Assim, mesmo que um produto tenha apenas 1 tamanho e outro tenha 5 (2 linhas),
-   o "Sizes:" começa sempre na mesma linha horizontal em todos os cartões */
+/* 3. Área dos tamanhos corrigida com altura uniforme */
 .sizes-wrapper {
-  margin-top: 10px;
-  min-height: 90px; /* Reserva espaço para 2 linhas de tamanhos sem desalinhamentos */
+  margin-top: 5px;
+  min-height: 80px;
   display: flex;
   flex-direction: column;
 }
 
-/* 4. O preço é empurrado sempre para o fundo absoluto do cartão */
+.sizes-title {
+  margin-bottom: 8px;
+  color: #7cff6b !important;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: left;
+}
+
+body.light .sizes-title {
+  color: #2e7d32 !important;
+}
+
+.sizes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.size-badge {
+  background: #222;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  border: 1px solid #333;
+  color: white;
+}
+
+body.light .size-badge {
+  background: #f3f3f3;
+  border: 1px solid #ddd;
+  color: black;
+}
+
+/* 4. Preço colado ao fundo */
 .price-wrapper {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-top: auto; /* Empurra o preço sempre para o rodapé do card */
-  padding-top: 16px;
+  margin-top: auto;
+  padding-top: 15px;
 }
 
 .price {
@@ -467,10 +496,9 @@ body.light .admin-divider {
   min-width: auto; 
   padding: 0;
   cursor: pointer;
-  accent-color: #7cff6b; /* Faz o "visto" ficar verde néon */
+  accent-color: #7cff6b;
 }
 
-/* Modo claro para a checkbox */
 body.light .checkbox-label {
   color: #666;
 }
@@ -480,12 +508,12 @@ body.light .checkbox-label:hover {
 }
 
 body.light .checkbox-input {
-  accent-color: #2e7d32; /* Faz o "visto" ficar verde esmeralda no modo claro */
+  accent-color: #2e7d32;
 }
 
 /* --- BOTÃO DE CANCELAR EDIÇÃO --- */
 .btn-cancel {
-  display: none; /* Fica oculto por defeito até o JS o chamar */
+  display: none;
   background: #444 !important; 
   color: white !important;
 }
@@ -553,13 +581,39 @@ body.light .admin-panel select {
 }
 
 .admin-item {
-  background: #181818;
-  padding: 16px;
-  border-radius: 14px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 12px;
+  background: #1e1e1e;
+  border-radius: 14px;
+  margin-bottom: 10px;
   border: 1px solid #242424;
+}
+
+body.light .admin-item {
+  background: #ffffff;
+  border-color: #dddddd;
+}
+
+.admin-item-content {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.admin-item-thumb {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 6px;
+  background: #2a2a2a;
+  border: 1px solid #3a3a3a;
+}
+
+body.light .admin-item-thumb {
+  background: #f0f0f0;
+  border-color: #e0e0e0;
 }
 
 .admin-item-info {
@@ -575,6 +629,14 @@ body.light .admin-panel select {
 .admin-item-info span {
   color: #8e8e8e;
   font-size: 0.85rem;
+}
+
+body.light .admin-item-info strong {
+  color: #111;
+}
+
+body.light .admin-item-info span {
+  color: #666;
 }
 
 .admin-item-actions {
@@ -656,21 +718,6 @@ body.light .admin-panel select {
   border: 1px solid #ddd;
 }
 
-body.light .admin-item {
-  background-color: white;
-  border: 1px solid #ddd;
-  color: black;
-}
-
-body.light .admin-item-info strong {
-  color: #111;
-}
-
-body.light .admin-item-info span {
-  color: #666;
-}
-
-/* --- ALTERAÇÃO DINÂMICA: BOTÕES DO ADMIN EM MODO CLARO (SUBTIL) --- */
 body.light .admin-panel button {
   background: #2e7d32;
   color: white;
@@ -698,7 +745,7 @@ body.light .btn-delete {
 .admin-panel input[type="file"] {
   padding: 12px 16px;
   cursor: pointer;
-  color: #8e8e8e; /* Cor do texto do nome do ficheiro (Escuro) */
+  color: #8e8e8e;
 }
 
 .admin-panel input[type="file"]::file-selector-button {
@@ -718,7 +765,7 @@ body.light .btn-delete {
 }
 
 body.light .admin-panel input[type="file"] {
-  color: #666; /* Cor do texto do nome do ficheiro (Claro) */
+  color: #666;
 }
 
 body.light .admin-panel input[type="file"]::file-selector-button {
@@ -728,49 +775,6 @@ body.light .admin-panel input[type="file"]::file-selector-button {
 
 body.light .admin-panel input[type="file"]::file-selector-button:hover {
   background: #d4d4d4;
-}
-
-/* --- ALINHAMENTO DA IMAGEM NO INVENTÁRIO --- */
-.admin-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px;
-  background: #1e1e1e;
-  border-radius: 8px;
-  margin-bottom: 10px;
-  border: 1px solid #2a2a2a;
-}
-
-body.light .admin-item {
-  background: #ffffff;
-  border-color: #dddddd;
-}
-
-.admin-item-content {
-  display: flex;
-  align-items: center;
-  gap: 15px; /* Espaço entre a imagem e o texto */
-}
-
-.admin-item-thumb {
-  width: 50px;         /* Largura fixa da miniatura */
-  height: 50px;        /* Altura fixa da miniatura */
-  object-fit: cover;   /* Garante que a imagem não fica distorcida */
-  border-radius: 6px;  /* Cantos ligeiramente arredondados */
-  background: #2a2a2a; /* Fundo escuro caso a imagem demore a carregar */
-  border: 1px solid #3a3a3a;
-}
-
-body.light .admin-item-thumb {
-  background: #f0f0f0;
-  border-color: #e0e0e0;
-}
-
-.admin-item-info {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
 }
 
 @media(max-width: 768px) {
@@ -785,7 +789,6 @@ body.light .admin-item-thumb {
     gap: 10px; 
   }
 
-  /* Ajuste no mobile para os botões de ordenar */
   .sort-buttons {
     width: 100%;
     display: flex;
@@ -829,6 +832,7 @@ body.light .admin-item-thumb {
     font-size: 0.85rem;
     margin-bottom: 8px;
     line-height: 1.4;
+    min-height: auto;
   }
 
   .info {
@@ -857,7 +861,6 @@ body.light .admin-item-thumb {
     font-size: 0.8rem;
   }
 
-  /* Ajustes do Admin Panel no Mobile */
   .admin-panel {
     margin: 30px 20px;
   }
